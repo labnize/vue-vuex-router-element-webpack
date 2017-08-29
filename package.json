@@ -1,0 +1,42 @@
+{
+  "name": "vue-vuex-router-webpack",
+  "version": "0.0.1",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {},
+  "scripts": {
+    "start": "node build/dev-server.js"
+  },
+  "keywords": [
+    "vue",
+    "vue-router",
+    "vuex",
+    "webpack"
+  ],
+  "author": "July",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "css-loader": "^0.28.5",
+    "eslint": "^4.5.0",
+    "eslint-config-airbnb-base": "^11.3.2",
+    "eslint-plugin-import": "^2.7.0",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.30.1",
+    "open": "0.0.5",
+    "style-loader": "^0.18.2",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "url-loader": "^0.5.9",
+    "vue": "^2.4.2",
+    "vue-loader": "^13.0.4",
+    "vue-template-compiler": "^2.4.2",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1"
+  }
+}
