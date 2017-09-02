@@ -6,6 +6,7 @@
 
 <script>
 import Layout from './components/layout';
+import 'element-ui/lib/theme-default/index.css';
 
 export default {
   name: 'app',
