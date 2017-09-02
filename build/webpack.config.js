@@ -42,14 +42,8 @@ const webpackConfig = {
         use: ['url-loader?limit=1024&name=images/[name].[hash:8].[ext]']
       },
       {
-        test: /\.styl$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            'css-loader',
-            'stylus-loader'
-          ]
-        })
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader']
       }]
   },
   plugins: [
