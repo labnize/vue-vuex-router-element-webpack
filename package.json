@@ -24,6 +24,7 @@
     "babel-preset-env": "^1.6.0",
     "clean-webpack-plugin": "^0.1.16",
     "css-loader": "^0.28.5",
+    "element-ui": "^1.4.3",
     "eslint": "^4.5.0",
     "eslint-config-airbnb-base": "^11.3.2",
     "eslint-plugin-import": "^2.7.0",
