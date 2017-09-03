@@ -9,6 +9,7 @@
 - Vue (MVVM框架)
 - Vuex (统一状态管理)
 - Vue Router (路由)
+- Element UI (UI框架)
 - Babel (ES6/7代码转译浏览器可执行)
 - Webpack (打包工具)
 
