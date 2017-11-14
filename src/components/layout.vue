@@ -8,32 +8,37 @@
         <el-aside width="200px">
           <el-row class="tac">
             <el-col :span="24">
-              <el-menu
-                :default-active="defaultActive"
-                class="el-menu-vertical-demo"
-                @open="handleOpen"
-                @close="handleClose"
-                background-color="#383a4b"
-                text-color="#fff"
-                active-text-color="#ffd04b"
-                :router="true">
-                <el-menu-item index="item1">
-                  <i class="el-icon-menu"></i>
-                  <span slot="title">导航一</span>
-                </el-menu-item>
-                <el-menu-item index="item2">
-                  <i class="el-icon-setting"></i>
-                  <span slot="title">导航二</span>
-                </el-menu-item>
-                <el-submenu index="item3">
-                  <template slot="title">
-                    <i class="el-icon-location"></i>
-                    <span>导航三</span>
+              <template v-if="menuList.length">
+                <el-menu
+                  :default-active="defaultActive"
+                  class="el-menu-vertical-demo"
+                  @open="handleOpen"
+                  @close="handleClose"
+                  background-color="#383a4b"
+                  text-color="#fff"
+                  active-text-color="#ffd04b"
+                  :router="true">
+                  <template v-for="item in menuList">
+                    <template v-if="item.sub">
+                      <el-submenu :index="item.key" :key="item.key">
+                        <template slot="title">
+                          <i class="el-icon-location"></i>
+                          <span>{{ item.name }}</span>
+                        </template>
+                        <el-menu-item v-for="subItem in item.sub" :index="subItem.key" :key="subItem.key">
+                          {{ subItem.name }}
+                        </el-menu-item>
+                      </el-submenu>
+                    </template>
+                    <template v-else>
+                      <el-menu-item :index="item.key" :key="item.key">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">{{ item.name }}</span>
+                      </el-menu-item>
+                    </template>
                   </template>
-                  <el-menu-item index="item3-1">选项1</el-menu-item>
-                  <el-menu-item index="item3-2">选项2</el-menu-item>
-                </el-submenu>
-              </el-menu>
+                </el-menu>
+              </template>
             </el-col>
           </el-row>
         </el-aside>
@@ -49,16 +54,19 @@
 </template>
 
 <script>
+  import menus from 'localData/menulist.json';
+
   export default {
     name: 'layout',
     data() {
       return {
-        defaultActive: 'item1'
+        defaultActive: 'item1',
+        menuList: menus.list
       };
     },
 
     created() {
-      this.defaultActive = this.$route.path.split('/')[1];
+      this.defaultActive = this.$route.path.split('/')[1] ? this.$route.path.split('/')[1] : 'item1';
     },
     mounted() {
       const layoutMain = $('.el-main');

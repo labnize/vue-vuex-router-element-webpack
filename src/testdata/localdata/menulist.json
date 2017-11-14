@@ -1,0 +1,26 @@
+{
+  "result": 0,
+  "list": [
+    {
+      "key": "item1",
+      "name": "导航一"
+    },
+    {
+      "key": "item2",
+      "name": "导航二"
+    },
+    {
+      "key": "item3",
+      "name": "导航三",
+      "sub": [
+        {
+          "key": "item3-1",
+          "name": "选项1"
+        }, {
+          "key": "item3-2",
+          "name": "选项2"
+        }
+      ]
+    }
+  ]
+}
