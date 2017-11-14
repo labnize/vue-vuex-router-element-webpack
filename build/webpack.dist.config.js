@@ -21,6 +21,8 @@ const webpackConfig = {
     extensions: ['.js', '.vue'],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
+      components: path.join(__dirname, '../src/components'),
+      pages: path.join(__dirname, '../src/pages'),
       jquery: path.join(__dirname, '../node_modules/jquery/dist/jquery.min.js')
     }
   },

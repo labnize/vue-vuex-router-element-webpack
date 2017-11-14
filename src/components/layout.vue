@@ -9,36 +9,39 @@
           <el-row class="tac">
             <el-col :span="24">
               <el-menu
-                default-active="1"
+                :default-active="defaultActive"
                 class="el-menu-vertical-demo"
                 @open="handleOpen"
                 @close="handleClose"
                 background-color="#383a4b"
                 text-color="#fff"
-                active-text-color="#ffd04b">
-                <el-menu-item index="1">
+                active-text-color="#ffd04b"
+                :router="true">
+                <el-menu-item index="item1">
                   <i class="el-icon-menu"></i>
+                  <span slot="title">导航一</span>
+                </el-menu-item>
+                <el-menu-item index="item2">
+                  <i class="el-icon-setting"></i>
                   <span slot="title">导航二</span>
                 </el-menu-item>
-                <el-menu-item index="2">
-                  <i class="el-icon-setting"></i>
-                  <span slot="title">导航三</span>
-                </el-menu-item>
-                <el-submenu index="3">
+                <el-submenu index="item3">
                   <template slot="title">
                     <i class="el-icon-location"></i>
-                    <span>导航一</span>
+                    <span>导航三</span>
                   </template>
-                  <el-menu-item index="1-1">选项1</el-menu-item>
-                  <el-menu-item index="1-2">选项2</el-menu-item>
+                  <el-menu-item index="item3-1">选项1</el-menu-item>
+                  <el-menu-item index="item3-2">选项2</el-menu-item>
                 </el-submenu>
               </el-menu>
             </el-col>
           </el-row>
         </el-aside>
         <el-container>
-          <el-main></el-main>
-          <el-footer>July Design ©2016 Created by July</el-footer>
+          <el-main>
+            <slot name="content"></slot>
+          </el-main>
+          <el-footer>July Design ©2017 Created by July</el-footer>
         </el-container>
       </el-container>
     </el-container>
@@ -48,12 +51,13 @@
 <script>
   export default {
     name: 'layout',
-
-    data () {
-      return {}
+    data() {
+      return {
+        defaultActive: 'item1'
+      };
     },
 
-    mounted: function () {
+    mounted() {
       const layoutMain = $('.el-main');
       const aside = $('.el-aside');
       let heightMain = `${$(window).height() - 120}px`;
@@ -66,17 +70,20 @@
         layoutMain.css('height', heightMain);
         aside.css('height', heightSide);
       });
+      this.defaultActive = this.$route.path.split('/')[1];
     },
 
+    computed: {
+    },
     methods: {
-      handleOpen (key, keyPath) {
-        console.log(key, keyPath)
+      handleOpen(key, keyPath) {
+        console.log(key, keyPath);
       },
-      handleClose (key, keyPath) {
-        console.log(key, keyPath)
+      handleClose(key, keyPath) {
+        console.log(key, keyPath);
       }
     }
-  }
+  };
 </script>
 
 <style>

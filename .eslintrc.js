@@ -7,9 +7,9 @@ module.exports = {
   },
   // extends: ['airbnb-base'],
   extends: ['plugin:vue/recommended', 'airbnb-base'],
-  // plugins: [
-  //   'vue'
-  // ],
+  plugins: [
+    'vue'
+  ],
   rules: {
     quotes: [2, 'single'],
     semi: 2,

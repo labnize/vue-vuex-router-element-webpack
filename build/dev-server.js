@@ -11,7 +11,7 @@ new WebpackDevServer(compiler, {
   noInfo: false,
   publicPath: '/',
   stats: { colors: true }
-}).listen(3001, (err) => {
+}).listen(3001, 'localhost', () => {
   console.log('http://127.0.0.1:3001');
   console.log('Opening your system browser...');
   open('http://127.0.0.1:3001');
