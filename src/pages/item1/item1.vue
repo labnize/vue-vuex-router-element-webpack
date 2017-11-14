@@ -1,6 +1,6 @@
 <template>
   <layout>
-    <div slot="content">
+    <div slot="content" class="item1">
       item1
     </div>
   </layout>
@@ -8,6 +8,7 @@
 
 <script>
   import Layout from 'components/layout';
+  import './item1.scss';
 
   export default {
     components: {

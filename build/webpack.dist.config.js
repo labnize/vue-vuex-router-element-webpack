@@ -1,9 +1,14 @@
 const webpack = require('webpack');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const extractSass = new ExtractTextPlugin({
+  filename: 'styles.[contenthash].css',
+  disable: process.env.NODE_ENV === 'development'
+});
 
 const webpackConfig = {
   entry: {
@@ -52,9 +57,22 @@ const webpackConfig = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader', 'postcss-loader']
+      },
+      {
+        test: /\.scss$/,
+        use: extractSass.extract({
+          use: [{
+            loader: 'css-loader'
+          }, {
+            loader: 'sass-loader'
+          }],
+          // 在开发环境使用 style-loader
+          fallback: 'style-loader'
+        })
       }]
   },
   plugins: [
+    extractSass,
     new BundleAnalyzerPlugin(),
     new CleanWebpackPlugin(['dist'], {
       root: path.resolve(__dirname, '../')
@@ -69,11 +87,11 @@ const webpackConfig = {
       name: ['vendor', 'runtime'],
       minChunks: 2
     }),
-    new ExtractTextPlugin({
-      filename: 'styles.[contenthash].css',
-      disable: false,
-      allChunks: true
-    }),
+    // new ExtractTextPlugin({
+    //   filename: 'styles.[contenthash].css',
+    //   disable: false,
+    //   allChunks: true
+    // }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
