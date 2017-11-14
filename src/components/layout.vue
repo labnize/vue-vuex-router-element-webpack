@@ -57,6 +57,9 @@
       };
     },
 
+    created() {
+      this.defaultActive = this.$route.path.split('/')[1];
+    },
     mounted() {
       const layoutMain = $('.el-main');
       const aside = $('.el-aside');
@@ -70,7 +73,6 @@
         layoutMain.css('height', heightMain);
         aside.css('height', heightSide);
       });
-      this.defaultActive = this.$route.path.split('/')[1];
     },
 
     computed: {
