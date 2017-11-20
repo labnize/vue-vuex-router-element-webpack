@@ -26,6 +26,7 @@ module.exports = {
     'no-mixed-operators': 0,
     "import/no-extraneous-dependencies": 0,
     "import/no-unresolved": 0,
-    "import/extensions": 0
+    "import/extensions": 0,
+    "import/no-dynamic-require": 0
   }
 };
