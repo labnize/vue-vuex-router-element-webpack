@@ -1,9 +1,9 @@
 <template>
-  <layout>
+  <Layout>
     <div slot="content" class="item1">
       item1
     </div>
-  </layout>
+  </Layout>
 </template>
 
 <script>
