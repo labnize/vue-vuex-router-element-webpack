@@ -32,7 +32,7 @@ export default class AXIOS {
       // TODO:loading遮罩层
       this.loading = Loading.service({
         lock: true,
-        text: 'Loading',
+        text: '加载中...',
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 0.7)'
       });

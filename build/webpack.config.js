@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const webpackConfig = {
@@ -30,7 +29,10 @@ const webpackConfig = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          extractCSS: true
+          loaders: {
+            scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
+            sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
+          }
         }
       },
       {
@@ -49,25 +51,22 @@ const webpackConfig = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader', 'postcss-loader']
-      },
-      {
-        test: /\.scss$/,
-        use: [{
-          loader: 'style-loader' // 将 JS 字符串生成为 style 节点
-        }, {
-          loader: 'css-loader' // 将 CSS 转化成 CommonJS 模块
-        }, {
-          loader: 'sass-loader' // 将 Sass 编译成 CSS
-        }]
-      }]
+      }
+      // 单独使用.scss
+      // {
+      //   test: /\.scss$/,
+      //   use: [{
+      //     loader: 'style-loader' // 将 JS 字符串生成为 style 节点
+      //   }, {
+      //     loader: 'css-loader' // 将 CSS 转化成 CommonJS 模块
+      //   }, {
+      //     loader: 'sass-loader' // 将 Sass 编译成 CSS
+      //   }]
+      // }
+    ]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin({
-      filename: 'styles.[contenthash].css',
-      disable: false,
-      allChunks: true
-    }),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.ProvidePlugin({
       $: 'jquery',
