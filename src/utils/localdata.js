@@ -4,11 +4,7 @@
  */
 
 const localData = {
-  'claa/menulist': require('localData/menulist2.json'),
-  'claa/tablelist': require('localData/tablelist.json'),
-  'claa/linelist': require('localData/linelist.json'),
-  'claa/pielist': require('localData/pielist.json'),
-  'claa/positionlist': require('localData/positionlist.json')
+  'claa/menulist': require('localData/menulist.json')
 };
 
 module.exports = localData;

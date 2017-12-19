@@ -1,9 +1,12 @@
 import axios from 'axios';
+import { Loading } from 'element-ui';
 import ErrorCode from './errorcode';
+
+const localDatas = require('util/localdata');
 
 export default class AXIOS {
   constructor() {
-    this.localData = require('util/localdata');
+    this.loading = '';
   }
 
   static getEnvPrefix() {
@@ -13,7 +16,7 @@ export default class AXIOS {
     return window.apiUrl;
   }
 
-  fetch(fetchObj) {
+  static fetch(fetchObj) {
     const {
       loadingFlag,
       method,
@@ -27,13 +30,20 @@ export default class AXIOS {
 
     if (loadingFlag) {
       // TODO:loading遮罩层
+      this.loading = Loading.service({
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      });
     }
     if (window.isDebug) {
       setTimeout(() => {
         if (loadingFlag) {
           // TODO:关闭loading遮罩层
+          this.loading.close();
         }
-        const localData = this.localData[url];
+        const localData = localDatas[url];
         if (localData.result === 0) {
           successFn(localData);
         } else {
@@ -45,6 +55,7 @@ export default class AXIOS {
           }
         }
       }, 500);
+      return;
     }
 
     url = this.getEnvPrefix() + url;

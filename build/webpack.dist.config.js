@@ -29,6 +29,7 @@ const webpackConfig = {
       components: path.join(__dirname, '../src/components'),
       pages: path.join(__dirname, '../src/pages'),
       localData: path.join(__dirname, '../src/testdata/localdata'),
+      util: path.join(__dirname, '../src/utils'),
       jquery: path.join(__dirname, '../node_modules/jquery/dist/jquery.min.js')
     }
   },

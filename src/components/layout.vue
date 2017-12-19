@@ -54,14 +54,17 @@
 </template>
 
 <script>
-  import menus from 'localData/menulist.json';
+  // import menus from 'localData/menulist.json';
+  import Axios from 'util/axios';
+
+  const operateUrl = 'claa/menulist';
 
   export default {
     name: 'layout',
     data() {
       return {
         defaultActive: 'item1',
-        menuList: menus.list
+        menuList: []
       };
     },
 
@@ -81,6 +84,7 @@
         layoutMain.css('height', heightMain);
         aside.css('height', heightSide);
       });
+      this.doQuery();
     },
 
     computed: {
@@ -91,6 +95,21 @@
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
+      },
+      doQuery() {
+        const that = this;
+        const param = {
+          loadingFlag: true,
+          url: operateUrl,
+          method: 'POST',
+          data: {
+            type: 'on'
+          },
+          successFn(data) {
+            that.menuList = data.list;
+          }
+        };
+        Axios.fetch(param);
       }
     }
   };
