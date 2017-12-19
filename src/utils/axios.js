@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { Loading } from 'element-ui';
+import { MessageBox } from 'element-ui';
+import 'components/common.scss';
 import ErrorCode from './errorcode';
 
 const localDatas = require('util/localdata');
@@ -76,6 +78,7 @@ export default class AXIOS {
       .then((res) => {
         if (loadingFlag) {
           // TODO:关闭loading遮罩层
+          this.loading.close();
         }
         if (res.result === 0) {
           successFn(res);
@@ -103,5 +106,10 @@ export default class AXIOS {
 
   static modalError(message) {
     // TODO:错误统一处理
+    MessageBox.alert(message, {
+      showConfirmButton: false,
+      customClass: 'axios-error',
+      callback: (action) => {}
+    });
   }
 }

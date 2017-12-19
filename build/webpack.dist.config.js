@@ -62,20 +62,20 @@ const webpackConfig = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader', 'postcss-loader']
-      }
+      },
       // 单独使用.scss
-      // {
-      //   test: /\.scss$/,
-      //   use: extractSass.extract({
-      //     use: [{
-      //       loader: 'css-loader'
-      //     }, {
-      //       loader: 'sass-loader'
-      //     }],
-      //     // 在开发环境使用 style-loader
-      //     fallback: 'style-loader'
-      //   })
-      // }
+      {
+        test: /\.scss$/,
+        use: extractSass.extract({
+          use: [{
+            loader: 'css-loader'
+          }, {
+            loader: 'sass-loader'
+          }],
+          // 在开发环境使用 style-loader
+          fallback: 'style-loader'
+        })
+      }
     ]
   },
   plugins: [

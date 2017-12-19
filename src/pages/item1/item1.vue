@@ -17,7 +17,7 @@
       Layout
     }
   };
-</script>c
+</script>
 
 <style lang="scss">
   .item1{
