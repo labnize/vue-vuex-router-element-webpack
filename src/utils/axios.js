@@ -31,18 +31,17 @@ export default class AXIOS {
     } = fetchObj;
 
     if (loadingFlag) {
-      // TODO:loading遮罩层
       this.loading = Loading.service({
         lock: true,
         text: '加载中...',
         spinner: 'el-icon-loading',
+        customClass: 'axios-loading',
         background: 'rgba(0, 0, 0, 0.7)'
       });
     }
     if (window.isDebug) {
       setTimeout(() => {
         if (loadingFlag) {
-          // TODO:关闭loading遮罩层
           this.loading.close();
         }
         const localData = localDatas[url];
@@ -77,7 +76,6 @@ export default class AXIOS {
     })
       .then((res) => {
         if (loadingFlag) {
-          // TODO:关闭loading遮罩层
           this.loading.close();
         }
         if (res.result === 0) {
@@ -105,10 +103,11 @@ export default class AXIOS {
   }
 
   static modalError(message) {
-    // TODO:错误统一处理
     MessageBox.alert(message, {
       showConfirmButton: false,
       customClass: 'axios-error',
+      center: true,
+      type: 'error',
       callback: (action) => {}
     });
   }

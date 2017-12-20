@@ -115,7 +115,7 @@
   };
 </script>
 
-<style>
+<style lang="scss">
   .logo{
 
   }
