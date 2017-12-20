@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <el-container>
+    <el-container style="min-height: 100vh">
       <el-header>
         <div width="200px" class="logo"></div>
       </el-header>
@@ -72,18 +72,6 @@
       this.defaultActive = this.$route.path.split('/')[1] ? this.$route.path.split('/')[1] : 'item1';
     },
     mounted() {
-      const layoutMain = $('.el-main');
-      const aside = $('.el-aside');
-      let heightMain = `${$(window).height() - 120}px`;
-      let heightSide = `${$(window).height() - 60}px`;
-      layoutMain.css('height', heightMain);
-      aside.css('height', heightSide);
-      $(window).resize(() => {
-        heightMain = `${$(window).height() - 127}px`;
-        heightSide = `${$(window).height() - 60}px`;
-        layoutMain.css('height', heightMain);
-        aside.css('height', heightSide);
-      });
       this.doQuery();
     },
 
