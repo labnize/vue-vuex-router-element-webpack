@@ -121,7 +121,7 @@ const webpackConfig = {
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: path.resolve(__dirname, '../src/index.html'),
+      template: path.resolve(__dirname, '../index.html'),
       inject: true,
       minify: {
         removeAttributeQuotes: true,

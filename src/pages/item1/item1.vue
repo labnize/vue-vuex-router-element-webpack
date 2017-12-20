@@ -2,7 +2,7 @@
   <Layout>
     <div slot="content" class="item1">
       <div class="text">
-        item1
+        <el-button type="primary" @click="handleOpen">全部打开</el-button>
       </div>
     </div>
   </Layout>
@@ -10,19 +10,20 @@
 
 <script>
   import Layout from 'components/layout';
-  // import './item1.scss';
+  import Modal from 'components/modal';
 
   export default {
     components: {
       Layout
+    },
+    methods: {
+      handleOpen() {
+        Modal.confirmModal('确定打开所有设备吗?');
+      }
     }
   };
 </script>
 
-<style lang="scss">
-  .item1{
-    .text{
-      color: red;
-    }
-  }
+<style lang="scss" scoped>
+
 </style>
