@@ -13,7 +13,7 @@ const extractSass = new ExtractTextPlugin({
 const webpackConfig = {
   entry: {
     app: path.resolve(__dirname, '../src/main.js'),
-    vendor: ['vue', 'jquery']
+    vendor: ['vue', 'element-ui', 'vue-router']
   },
   output: {
     path: path.join(__dirname, '../dist'),
@@ -29,8 +29,8 @@ const webpackConfig = {
       components: path.join(__dirname, '../src/components'),
       pages: path.join(__dirname, '../src/pages'),
       localData: path.join(__dirname, '../src/testdata/localdata'),
-      util: path.join(__dirname, '../src/utils'),
-      jquery: path.join(__dirname, '../node_modules/jquery/dist/jquery.min.js')
+      util: path.join(__dirname, '../src/utils')
+      // jquery: path.join(__dirname, '../node_modules/jquery/dist/jquery.min.js')
     }
   },
   module: {
@@ -114,11 +114,11 @@ const webpackConfig = {
       minimize: true
     }),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery'
-    }),
+    // new webpack.ProvidePlugin({
+    //   $: 'jquery',
+    //   jQuery: 'jquery',
+    //   'window.jQuery': 'jquery'
+    // }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, '../index.html'),

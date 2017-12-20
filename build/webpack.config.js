@@ -19,8 +19,8 @@ const webpackConfig = {
       components: path.join(__dirname, '../src/components'),
       pages: path.join(__dirname, '../src/pages'),
       localData: path.join(__dirname, '../src/testdata/localdata'),
-      util: path.join(__dirname, '../src/utils'),
-      jquery: path.join(__dirname, '../node_modules/jquery/dist/jquery.min.js')
+      util: path.join(__dirname, '../src/utils')
+      // jquery: path.join(__dirname, '../node_modules/jquery/dist/jquery.min.js')
     }
   },
   module: {
@@ -68,11 +68,11 @@ const webpackConfig = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery'
-    }),
+    // new webpack.ProvidePlugin({
+    //   $: 'jquery',
+    //   jQuery: 'jquery',
+    //   'window.jQuery': 'jquery'
+    // }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, '../index.html'),
