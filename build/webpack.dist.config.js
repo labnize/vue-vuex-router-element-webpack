@@ -40,10 +40,15 @@ const webpackConfig = {
         loader: 'vue-loader',
         options: {
           extractCSS: true, // 单独使用.scss
-          loaders: {
-            scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
-            sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
-          }
+          use: extractSass.extract({
+            use: [{
+              loader: 'css-loader'
+            }, {
+              loader: 'sass-loader'
+            }],
+            // 在开发环境使用 style-loader
+            fallback: 'style-loader'
+          })
         }
       },
       {

@@ -116,6 +116,9 @@
 
   .el-aside {
     background-color: #383a4b;
+    .el-menu{
+      border-right: 0;
+    }
   }
 
   .el-main {
