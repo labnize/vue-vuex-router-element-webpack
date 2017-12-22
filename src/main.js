@@ -9,6 +9,8 @@ import item2 from 'pages/item2/item2';
 import item31 from 'pages/item3/option1';
 import item32 from 'pages/item3/option2';
 
+import store from './store';
+
 Vue.use(ElementUI);
 Vue.use(VueRouter);
 /* eslint-disable no-new */
@@ -27,6 +29,7 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   router,
+  store,
   template: `
     <div id="app">
       <router-view class="view"></router-view>

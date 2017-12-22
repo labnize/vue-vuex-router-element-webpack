@@ -9,7 +9,7 @@
 </template>
 
 <script>
-  import Layout from 'components/layout';
+  import Layout from 'components/layout1';
   import Modal from 'components/modal';
 
   export default {

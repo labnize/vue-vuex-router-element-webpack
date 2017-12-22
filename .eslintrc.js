@@ -21,7 +21,7 @@ module.exports = {
     'object-curly-spacing': [2, 'always'],
     'no-undef': [1],
     'new-cap': 1,
-    'no-param-reassign': 2,
+    'no-param-reassign': 0,
     'global-require': 0,
     'no-mixed-operators': 0,
     "import/no-extraneous-dependencies": 0,
