@@ -6,7 +6,7 @@ module.exports = {
     es6: true
   },
   // extends: ['airbnb-base'],
-  extends: ['vue', 'airbnb-base'],
+  extends: ['plugin:vue/recommended', 'airbnb-base'],
   plugins: [
     'vue'
   ],
