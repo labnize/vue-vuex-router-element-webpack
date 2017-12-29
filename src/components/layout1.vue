@@ -2,7 +2,7 @@
   <div class="layout">
     <el-container style="min-height: 100vh">
       <el-header>
-        <div width="200px" class="logo"></div>
+        <div width="200px" class="logo"/>
       </el-header>
       <el-container>
         <el-aside width="200px">
@@ -22,7 +22,7 @@
                     <template v-if="item.sub">
                       <el-submenu :index="item.key" :key="item.key">
                         <template slot="title">
-                          <i class="el-icon-location"></i>
+                          <i class="el-icon-location"/>
                           <span>{{ item.name }}</span>
                         </template>
                         <el-menu-item v-for="subItem in item.sub" :index="subItem.key" :key="subItem.key">
@@ -32,7 +32,7 @@
                     </template>
                     <template v-else>
                       <el-menu-item :index="item.key" :key="item.key">
-                        <i class="el-icon-menu"></i>
+                        <i class="el-icon-menu"/>
                         <span slot="title">{{ item.name }}</span>
                       </el-menu-item>
                     </template>
@@ -44,7 +44,7 @@
         </el-aside>
         <el-container>
           <el-main>
-            <slot name="content"></slot>
+            <slot name="content"/>
           </el-main>
           <el-footer>July Design ©2017 Created by July</el-footer>
         </el-container>
@@ -54,48 +54,48 @@
 </template>
 
 <script>
-  const operateUrl = 'claa/menulist';
+const operateUrl = 'claa/menulist';
 
-  export default {
-    name: 'layout',
-    data() {
-      return {
-        defaultActive: 'item1'
-      };
-    },
+export default {
+  name: 'Layout',
+  data() {
+    return {
+      defaultActive: 'item1'
+    };
+  },
 
-    created() {
-      this.defaultActive = this.$route.path.split('/')[1] ? this.$route.path.split('/')[1] : 'item1';
-    },
-    mounted() {
-      this.doQuery();
-    },
+  created() {
+    this.defaultActive = this.$route.path.split('/')[1] ? this.$route.path.split('/')[1] : 'item1';
+  },
+  mounted() {
+    this.doQuery();
+  },
 
-    computed: {
-      menu() {
-        return this.$store.state.menu.menuList;
-      }
-    },
-    methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      doQuery() {
-        const param = {
-          loadingFlag: true,
-          url: operateUrl,
-          method: 'POST',
-          data: {
-            type: 'on'
-          }
-        };
-        this.$store.dispatch('fetch', param);
-      }
+  computed: {
+    menu() {
+      return this.$store.state.menu.menuList;
     }
-  };
+  },
+  methods: {
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    doQuery() {
+      const param = {
+        loadingFlag: true,
+        url: operateUrl,
+        method: 'POST',
+        data: {
+          type: 'on'
+        }
+      };
+      this.$store.dispatch('fetch', param);
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>

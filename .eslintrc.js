@@ -28,6 +28,7 @@ module.exports = {
     "import/no-unresolved": 0,
     "import/extensions": 0,
     "import/no-dynamic-require": 0,
-    "import/no-duplicates": 0
+    "import/no-duplicates": 0,
+    "vue/max-attributes-per-line": 0
   }
 };
