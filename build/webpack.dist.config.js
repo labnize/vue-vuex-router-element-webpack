@@ -2,18 +2,20 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const extractSass = new ExtractTextPlugin({
-  filename: 'styles.[contenthash].css',
+  filename: 'styles.[hash].css',
   disable: process.env.NODE_ENV === 'development'
 });
 
 const webpackConfig = {
   entry: {
-    app: path.resolve(__dirname, '../src/main.js'),
-    vendor: ['vue', 'element-ui', 'vue-router']
+    app: path.resolve(__dirname, '../src/main.js')
+    // vendor: ['vue', 'element-ui', 'vue-router']
   },
   output: {
     path: path.join(__dirname, '../dist'),
@@ -83,6 +85,30 @@ const webpackConfig = {
       }
     ]
   },
+  mode: 'production',
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    },
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: {
+            warnings: false
+          },
+          output: {
+            comments: false
+          }
+        }
+      })
+    ]
+  },
   plugins: [
     extractSass,
     new BundleAnalyzerPlugin(),
@@ -95,21 +121,21 @@ const webpackConfig = {
       }
     }),
     new webpack.HashedModuleIdsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor', 'runtime'],
-      minChunks: 2
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      mangle: {
-        except: ['$super', '$', 'exports', 'require']  // 以上变量‘$super’, ‘$’, ‘exports’ or ‘require’，不会被混淆
-      },
-      output: {
-        comments: false
-      }
-    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: ['vendor', 'runtime'],
+    //   minChunks: 2
+    // }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   },
+    //   mangle: {
+    //     except: ['$super', '$', 'exports', 'require'] // 以上变量‘$super’, ‘$’, ‘exports’ or ‘require’，不会被混淆
+    //   },
+    //   output: {
+    //     comments: false
+    //   }
+    // }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
     }),
@@ -129,8 +155,12 @@ const webpackConfig = {
         removeEmptyAttributes: true,
         collapseWhitespace: true
       }
-    })
-  ]
+    }),
+    new VueLoaderPlugin()
+  ],
+  performance: {
+    hints: false
+  }
 };
 
 module.exports = webpackConfig;
