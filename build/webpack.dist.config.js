@@ -2,8 +2,9 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
 const extractSass = new ExtractTextPlugin({
   filename: 'styles.[contenthash].css',
@@ -13,7 +14,7 @@ const extractSass = new ExtractTextPlugin({
 const webpackConfig = {
   entry: {
     app: path.resolve(__dirname, '../src/main.js'),
-    vendor: ['vue', 'element-ui', 'vue-router']
+    vendor: ['vue', 'element-ui', 'vue-router', 'vuex', 'echarts']
   },
   output: {
     path: path.join(__dirname, '../dist'),
@@ -104,7 +105,7 @@ const webpackConfig = {
         warnings: false
       },
       mangle: {
-        except: ['$super', '$', 'exports', 'require']  // 以上变量‘$super’, ‘$’, ‘exports’ or ‘require’，不会被混淆
+        except: ['$super', '$', 'exports', 'require'] // 以上变量‘$super’, ‘$’, ‘exports’ or ‘require’，不会被混淆
       },
       output: {
         comments: false
@@ -129,7 +130,8 @@ const webpackConfig = {
         removeEmptyAttributes: true,
         collapseWhitespace: true
       }
-    })
+    }),
+    new VueLoaderPlugin()
   ]
 };
 
