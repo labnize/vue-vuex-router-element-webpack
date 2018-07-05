@@ -29,5 +29,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~leaflet/dist/leaflet.css';
+// @import '~leaflet-compass/src/leaflet-compass.css';
 
 </style>
